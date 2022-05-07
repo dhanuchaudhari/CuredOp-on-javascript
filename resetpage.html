@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link src="/dist/output.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+<form  action="" id="myform">
+
+  <div class="grid justify-center px-32 p-4 shadow  gap-5 mx-44 mt-12 border rounded-lg">
+    <input id="name" class="border h-8 pl-2 text-xs rounded" type="text" placeholder="Enter Your Name">
+
+    <div class="flex space-x-12 items-center">
+
+      <input class="text-xs rounded" type="radio" id="male" name="gender" value="male">Male
+
+      <input class="text-xs rounded" type="radio" id="female" name="gender" value="female">Female
+    </div>
+    <div>
+      Select Language<br>
+      <input class="text-xs" type="checkbox" name="Language" id="java" value="java">JAVA
+      <input class="text-xs" type="checkbox" name="Language" id="html" value="html">HTML
+      <input class="text-xs" type="checkbox" name="Language" id="css" value="css">CSS
+      <input class="text-xs" type="checkbox" name="Language" id="php" value="php">PHP
+    </div>
+    <div class="flex justify-center">
+      <button id="button" class="px-3 bg-blue-700 text-white rounded w-33" onclick="submitData(event)">submit</button>
+
+    </div>
+
+    <div >
+      <table id="tableData">
+        <tr>
+          <th>Name</th>
+          <th>Gender </th>
+          <th>Language</th>
+        </tr>
+        
+       </table>
+    </div>
+  </form >
+  <script>
+  //   function submitData(){
+  //     event.preventDefault()
+  //     let name = document.getElementById("name").value
+  //      document.getElementById("name").innerHTML = name;
+  //      document.getElementById("tableData").style.display = "block";
+       
+  //      var ele=document.getElementsByName("gender");
+  //       for(i=0; i<ele.length; i++){
+  //         if(ele[i].checked)
+  //         document.getElementById("gender").innerHTML="" + ele[i].value;
+  //       }
+  //       function myFunction(){
+  //         document.getElementById("myform").reset();
+  //       }
+  //       var ele1 = document.getElementsByName("Language");
+  //       var arr = [];
+  //       for (var i = 0; i < ele1.length; i++) {
+  //         if (ele1[i].type == 'checkbox' && ele1[i].checked) {
+  //           arr.push(ele1[i].value);}}
+  //           document.getElementById("Language").innerHTML=arr
+          
+  //   }
+
+  
+   
+
+function submitData(el) {
+  e1.preventDefault()
+  var table = document.getElementById('tableData');
+  var tr = table.insertRow();
+  el.form.querySelectorAll('input').forEach(function(el) {
+    var cell = tr.appendChild(document.createElement('td'));
+    cell.textContent = el.value;
+  });
+
+//  return false
+}
+
+
+      // function submitData(evt) {
+      //   evt.preventDefault();
+      //   let name = document.getElementById("name").value
+      //   document.getElementById("demo").innerHTML = name;
+
+      //   document.getElementById("tableData").style.display = "block";
+
+      //   // var ele=document.getElementsByName("gender");
+      //   // for(i=0; i<ele.length; i++){
+      //   //   if(ele[i].checked)
+      //   //   document.getElementById("gender").innerHTML="" + ele[i].value;
+      //   // }
+
+      //   let gender
+      //   if (document.getElementById("male").checked) {
+      //     gender = document.getElementById("male").value;
+      //   }
+      //   else if (document.getElementById("female").checked) {
+      //     gender = document.getElementById("female").value
+      //   }
+      //   document.getElementById("gender").innerHTML=gender;
+
+      //   var ele1 = document.getElementsByName("Language");
+      //   var arr = [];
+      //   for (var i = 0; i < ele1.length; i++) {
+      //     if (ele1[i].type == 'checkbox' && ele1[i].checked) {
+      //       arr.push(ele1[i].value);
+           
+      //     }
+      //   }
+      //   //return arr;
+      //   document.getElementById("Language").innerHTML=arr
+      //   document.getElementById("myform").reset();
+      //   // evt.preventDefault();
+      //   return false
+      // }
+      
+     </script>
+
+</body>
+
+</html>

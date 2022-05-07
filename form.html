@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link src="/dist/output.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="myform">
+        <div>
+            <p id="demo"></p>
+        </div>
+
+        <div class="grid justify-center px-32 p-4 shadow  gap-5 mx-44 mt-12 border rounded-lg">
+            <input id="name" class="border h-8 pl-2 text-xs rounded" type="text" placeholder="Enter Your Name">
+            <input id="email" class="border h-8 pl-2 text-xs rounded" type="email" placeholder="Enter Email">
+            <input id="date" class="border h-8 pl-2 text-xs rounded" type="date" placeholder="Enter date of birth">
+            <div>
+                <label id="gender" class="text-xs"> Select Gender<br>
+                    <input class="text-xs rounded" type="radio" id="male" name="Gender" value="male">
+                    <label class="text-xs rounded" for="female">Male</label><br>
+                    <input class="text-xs rounded" type="radio" id="Female" name="Gender" value="female">
+                    <label class="text-xs rounded" for="female">Female</label><br></label>
+
+            </div>
+            <div>
+                <label class="text-xs"> Select Language<br>
+                    <input class="text-xs" type="checkbox" id="java">
+                    <label class="text-xs"> java</label><br>
+                    <input class="text-xs" type="checkbox" id="html">
+                    <label class="text-xs"> html</label><br>
+                    <input class="text-xs" type="checkbox" id="css">
+                    <label class="text-xs"> css</label><br></label>
+            </div>
+            <input id="password" class="border h-8 pl-2 text-xs" type="password" placeholder="password">
+            <div class="flex justify-center">
+                <button id="button" class="px-3 bg-blue-700 text-white rounded w-33"
+                    onclick="submitData()">submit</button>
+            </div>
+        </div>
+
+
+
+
+        <!-- <script>
+        function submitData() {
+            let name = document.getElementById("name").value
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password").value
+            let obj = JSON.stringify({ name: name, email: email, password: password })
+            
+            console.log(obj);
+            // document.getElementById("demo").innerHTML = obj;
+        }
+
+    </script> -->
+
+        <div class="grid px-32 p-4  mx-44 mt-12 border">
+            <table id="table" class="border-collapse border border-slate-400">
+                <tr>
+                    <th class="border border-black">Name</th>
+                    <th class="border border-black">Email</th>
+                    <th class="border border-black">Date-of-Birth</th>
+                    <th class="border border-black">Gender</th>
+                    <th class="border border-black">Password</th>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <script>
+        function submitData() {
+            let name = document.getElementById("name").value
+            let email = document.getElementById("email").value;
+            let date = document.getElementById("date").value
+            let password = document.getElementById("password").value;
+            let Gender = document.getElementById("gender").value;
+
+            let obj = JSON.stringify({ name: name, email: email, date: date, password: password })
+            var table = document.getElementById("table");
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = obj.name
+            cell2.innerHTML = obj.email;
+            cell3.innerHTML = obj.date;
+            cell4.innerHTML = obj.password;
+            console.log(obj);
+            // document.getElementById("myform").reset();
+        }
+    </script>
+</body>
+
+</html>

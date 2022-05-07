@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<style>
+    table {
+        margin-top: 50px;
+        text-align: center;
+        background: #333;
+        color: #fff;
+    }
+
+    #show th,
+    #show td {
+        padding: 13px;
+    }
+
+    #btna td input {
+        width: 100%;
+    }
+</style>
+
+<body>
+    <center>
+        <form id="myform" autocomplete="off">
+            <table border="4">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <td><input type="text" name="fname" id="fname"> </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Last Name</th>
+                        <td><input type="text" name="lname" id="lname"> </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input type="text" name="email" id="email"> </td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td><input type="text" name="age" id="age"> </td>
+                    </tr>
+
+                    <tr>
+                        <th>Gender</th>
+                        <td><input type="radio" name="male" id="male"> Male </td>
+                        <td><input type="radio" name="male" id="male"> Female </td>
+                    </tr>
+
+                    <tr>
+
+                    </tr>
+
+                    <tr id="btna">
+                        <td colspan="2"><input type="button" name="button" id="btn" value="Add"
+                                onclick="event.preventDefault();onFormSubmit();"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <table border="4" id="show">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </center>
+    <script>
+
+        var n = 1;
+        var selectedRow = null;
+        function onFormSubmit() {
+            if (validate()) {
+                var formData = readFormData();
+                if (selectedRow == null)
+                    insertNewRecord(formData);
+                else
+                    updateRecord(formData);
+                resetForm();
+            }
+        }
+        function readFormData() {
+            var formData = {};
+            formData["fname"] = document.getElementById("fname").value;
+            formData["lname"] = document.getElementById("lname").value;
+            formData["email"] = document.getElementById("email").value;
+            formData["age"] = document.getElementById("age").value;
+            return formData;
+        }
+        function insertNewRecord(data) {
+            var table = document.getElementById("show").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell1.innerHTML = data.fname;
+            cell2 = newRow.insertCell(1);
+            cell2.innerHTML = data.lname;
+            cell3 = newRow.insertCell(2);
+            cell3.innerHTML = data.email;
+            cell4 = newRow.insertCell(3);
+            cell4.innerHTML = data.age;
+            cell5 = newRow.insertCell(4);
+            cell5.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+                       <a onClick="onDelete(this)">Delete</a>`;
+        }
+
+
+        // function AddRow() {
+
+
+        //     var AddRown = document.getElementById('show');
+        //     var NewRow = AddRown.insertRow(n);
+
+        //     var cel1 = NewRow.insertCell(0);
+        //     var cel2 = NewRow.insertCell(1);
+        //     var cel3 = NewRow.insertCell(2);
+        //     var cel4 = NewRow.insertCell(3);
+        //     var cel5 = NewRow.insertCell(4);
+
+        //     cel1.innerHTML = fname
+        //     cel2.innerHTML = lname
+        //     cel3.innerHTML = email
+        //     cel4.innerHTML = age
+        //     cel5.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+        //                <a onClick="onDelete(this)">Delete</a>`;
+
+        //     n++;
+        //     let userObj = JSON.stringify({ firstName: fname, lastName: lname, email: email, age: age })
+        //     console.log(userObj);
+        //     document.getElementById("myform").reset() // form reset
+        // }
+        
+        function onEdit(td) {
+            selectedRow = td.parentElement.parentElement;
+            document.getElementById("fname").value = selectedRow.cells[0].innerHTML;
+            document.getElementById("lname").value = selectedRow.cells[1].innerHTML;
+            document.getElementById("email").value = selectedRow.cells[2].innerHTML;
+            document.getElementById("age").value = selectedRow.cells[3].innerHTML;
+        }
+        function updateRecord(formData) {
+            selectedRow.cells[0].innerHTML = formData.fullName;
+            selectedRow.cells[1].innerHTML = formData.empCode;
+            selectedRow.cells[2].innerHTML = formData.salary;
+            selectedRow.cells[3].innerHTML = formData.city;
+        }
+
+        function onDelete(td) {
+            if (confirm('Are you sure to delete this record ?')) {
+                row = td.parentElement.parentElement;
+                document.getElementById("show").deleteRow(row.rowIndex);
+                resetForm();
+            }
+        }
+        function validate() {
+            isValid = true;
+            if (document.getElementById("fullName").value == "") {
+                isValid = false;
+                document.getElementById("fullNameValidationError").classList.remove("hide");
+            } else {
+                isValid = true;
+                if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+                    document.getElementById("fullNameValidationError").classList.add("hide");
+            }
+            return isValid;
+        }
+
+    </script>
+
+
+</body>
+
+</html>
